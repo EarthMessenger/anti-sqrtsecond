@@ -60,7 +60,6 @@ const markBenbenA = (ele) => {
             break;
         }
     }
-    console.log(ele);
 };
 
 const markBenbenImg = (ele) => {
@@ -70,7 +69,6 @@ const markBenbenImg = (ele) => {
     let newAltText = `${altText} | ${src}`;
     ele.setAttribute('alt', newAltText);
     ele.setAttribute('title', newAltText);
-    console.log(ele);
 };
 
 // 当观察到变动时执行的回调函数
