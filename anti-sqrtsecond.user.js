@@ -12,7 +12,7 @@
 
 const contentMap = {
     'rickroll': 'RickRoll',
-    'bilibli1': '洛天依 - 凉雨',
+    'bilibili1': '洛天依 - 凉雨',
     'bilibili2': '天依教你甜甜圈的正确用法',
 };
 
@@ -21,21 +21,23 @@ const keywordMap = {
     'milime.top': 'rickroll',
     'rrHrxMt': 'rickroll',
     '192d9a98d782d9c74c96f09db9378d93.mp4': 'rickroll',
-    'BV12x411y7SN': 'bilibli1',
+    'BV12x411y7SN': 'bilibili1',
     'BV1sx411S7rN': 'bilibili2',
 };
 
 // 根据 contentMap 生成 css
 const genCss = (contentMap) => {
     let res = "";
-    for (let i in contentMap) {
-        res += `.as-${i}::after {
-            content: "[Warn: ${contentMap[i]}]"; 
+    res += `.as-warn::after{
             margin-left: 0.2em;
             font-family: monospace;
             background-color: yellow;
             color: red;
-        };\n`;
+    }\n`
+    for (let i in contentMap) {
+        res += `.as-${i}::after {
+            content: "[Warn: ${contentMap[i]}]"; 
+        }\n`;
     }
     return res;
 };
