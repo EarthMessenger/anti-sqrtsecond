@@ -1,13 +1,17 @@
 // ==UserScript==
-// @name         Luogu Feed: Anti-SqrtSecond
-// @namespace    https://imken.moe/
-// @version      0.2.0
-// @description  某些人总是喜欢发一些隐藏犇犇 e.g. `[](你被骗了)`
-// @author       Imken Luo
-// @match        https://www.luogu.com.cn/
-// @match        https://www.luogu.com.cn/?*
-// @icon         https://www.luogu.com.cn/favicon.ico
-// @grant        none
+// @name            Luogu Feed: Anti-SqrtSecond
+// @name:zh         洛谷犇犇反诈工具
+// @namespace       https://imken.moe/
+// @version         0.1.5.1
+// @description     Luogu Feed hidden link display tool, rickroll display tool.
+// @description:zh  洛谷犇犇隐藏链接显示工具、诈骗显示工具。
+// @author          Imken Luo
+// @match           https://www.luogu.com.cn/
+// @match           https://www.luogu.com.cn/?*
+// @icon            https://www.luogu.com.cn/favicon.ico
+// @license         GPL-3.0-or-later
+// @supportURL      https://github.com/immccn123/anti-sqrtsecond/issues
+// @contributionURL https://sponsor.imken.moe/
 // ==/UserScript==
 
 const contentMap = {
@@ -18,8 +22,15 @@ const contentMap = {
 
 const keywordMap = {
     'BV1GJ411x7h7': 'rickroll',
-    'milime.top': 'rickroll',
-    'rrHrxMt': 'rickroll',
+    'BV1va411w7aM': 'rickroll',
+    'BV1BP4y1G78b': 'rickroll',
+    'BV1mu411U7GU': 'rickroll',
+    'BV1Px411w7FH': 'rickroll',
+    'BV1Ti4y1f7td': 'rickroll',
+    'av156766':     'rickroll',
+    'id=5221167':   'rickroll', //  Netease Music
+    'milime.top':   'rickroll',
+    'rrHrxMt':      'rickroll',
     '192d9a98d782d9c74c96f09db9378d93.mp4': 'rickroll',
     'BV12x411y7SN': 'bilibili1',
     'BV1sx411S7rN': 'bilibili2',
