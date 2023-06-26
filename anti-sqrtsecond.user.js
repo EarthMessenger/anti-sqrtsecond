@@ -2,7 +2,7 @@
 // @name            Luogu Feed: Anti-SqrtSecond
 // @name:zh         洛谷犇犇反诈工具
 // @namespace       https://imken.moe/
-// @version         0.1.5.1
+// @version         0.1.6.0
 // @description     Luogu Feed hidden link display tool, rickroll display tool.
 // @description:zh  洛谷犇犇隐藏链接显示工具、诈骗显示工具。
 // @author          Imken Luo
@@ -77,9 +77,9 @@ const markBenbenA = (ele) => {
 
 const markBenbenImg = (ele) => {
     let altText = ele.getAttribute('alt');
-    let src = ele.getAttribute('src');
-    src = decodeURIComponent(src);
-    let newAltText = `${altText} | ${src}`;
+    let src = decodeURIComponent(ele.getAttribute('src'));
+    let title = ele.getAttribute('title');
+    let newAltText = `${altText} | ${src} | ${title}`;
     ele.setAttribute('alt', newAltText);
     ele.setAttribute('title', newAltText);
 };
