@@ -15,25 +15,25 @@
 // ==/UserScript==
 
 const contentMap = {
-    'rickroll': 'RickRoll',
-    'bilibili1': '洛天依 - 凉雨',
-    'bilibili2': '天依教你甜甜圈的正确用法',
+    "rickroll": "RickRoll",
+    "bilibili1": "洛天依 - 凉雨",
+    "bilibili2": "天依教你甜甜圈的正确用法",
 };
 
 const keywordMap = {
-    'BV1GJ411x7h7': 'rickroll',
-    'BV1va411w7aM': 'rickroll',
-    'BV1BP4y1G78b': 'rickroll',
-    'BV1mu411U7GU': 'rickroll',
-    'BV1Px411w7FH': 'rickroll',
-    'BV1Ti4y1f7td': 'rickroll',
-    'av156766':     'rickroll',
-    'id=5221167':   'rickroll', //  Netease Music
-    'milime.top':   'rickroll',
-    'rrHrxMt':      'rickroll',
-    '192d9a98d782d9c74c96f09db9378d93.mp4': 'rickroll',
-    'BV12x411y7SN': 'bilibili1',
-    'BV1sx411S7rN': 'bilibili2',
+    "BV1GJ411x7h7": "rickroll",
+    "BV1va411w7aM": "rickroll",
+    "BV1BP4y1G78b": "rickroll",
+    "BV1mu411U7GU": "rickroll",
+    "BV1Px411w7FH": "rickroll",
+    "BV1Ti4y1f7td": "rickroll",
+    "av156766":     "rickroll",
+    "id=5221167":   "rickroll", //  Netease Music
+    "milime.top":   "rickroll",
+    "rrHrxMt":      "rickroll",
+    "192d9a98d782d9c74c96f09db9378d93.mp4": "rickroll",
+    "BV12x411y7SN": "bilibili1",
+    "BV1sx411S7rN": "bilibili2",
 };
 
 // 根据 contentMap 生成 css
@@ -44,7 +44,7 @@ const genCss = (contentMap) => {
             font-family: monospace;
             background-color: yellow;
             color: red;
-    }\n`
+    }\n`;
     for (let i in contentMap) {
         res += `.as-${i}::after {
             content: "[Warn: ${contentMap[i]}]"; 
@@ -55,49 +55,49 @@ const genCss = (contentMap) => {
 
 // 注入 css
 const addCSS = (css) => {
-    let style = document.createElement('style');
-    style.type = 'text/css';
+    let style = document.createElement("style");
+    style.type = "text/css";
     style.innerHTML = css;
     document.head.appendChild(style);
 };
 
 const markBenbenA = (ele) => {
-    const href = ele.getAttribute('href');
-    if (ele.innerHTML.trim() === '') {
+    const href = ele.getAttribute("href");
+    if (ele.innerHTML.trim() === "") {
         ele.innerHTML = href;
     }
     for (let key in keywordMap) {
         if (href.includes(key)) {
             ele.classList.add(`as-${keywordMap[key]}`);
-            ele.classList.add('as-warn');
+            ele.classList.add("as-warn");
             break;
         }
     }
 };
 
 const markBenbenImg = (ele) => {
-    let altText = ele.getAttribute('alt');
-    let src = decodeURIComponent(ele.getAttribute('src'));
-    let title = ele.getAttribute('title');
+    let altText = ele.getAttribute("alt");
+    let src = decodeURIComponent(ele.getAttribute("src"));
+    let title = ele.getAttribute("title");
     let newAltText = `${altText} | ${src} | ${title}`;
-    ele.setAttribute('alt', newAltText);
-    ele.setAttribute('title', newAltText);
+    ele.setAttribute("alt", newAltText);
+    ele.setAttribute("title", newAltText);
 };
 
 // 当观察到变动时执行的回调函数
-const observerCallback = (mutationsList, observer) => {
+const observerCallback = (mutationsList, ) => {
     for (let mutation of mutationsList) {
         for (let addedNode of mutation.addedNodes) {
             if (!addedNode.querySelectorAll) continue;
 
-            aElements = addedNode.querySelectorAll('.feed-comment a');
+            let aElements = addedNode.querySelectorAll(".feed-comment a");
             for (let ele of aElements) {
                 if (ele.hasAttribute("as-marked")) continue;
                 ele.setAttribute("as-marked", "1");
                 markBenbenA(ele);
             }
 
-            imgElements = addedNode.querySelectorAll('#feed .feed-comment img');
+            let imgElements = addedNode.querySelectorAll("#feed .feed-comment img");
             for (let ele of imgElements) {
                 if (ele.hasAttribute("as-marked")) continue;
                 ele.setAttribute("as-marked", "1");
@@ -106,13 +106,13 @@ const observerCallback = (mutationsList, observer) => {
 
         }
     }
-}
+};
 
 (() => {
     addCSS(genCss(contentMap));
 
     // 选择需要观察变动的节点
-    const targetNode = document.getElementById('feed');
+    const targetNode = document.getElementById("feed");
 
     // 没有犇犇不执行
     if (targetNode === null) return ;
